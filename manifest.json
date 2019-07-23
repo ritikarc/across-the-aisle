@@ -1,7 +1,7 @@
 {
-  "name": "Color Changer",
-  "author": "Microsoft Edge Extension Developer",
-  "description": "Change the color of the body on docs.microsoft.com",
+  "name": "Across the Aisle",
+  "author": "Microsoft Hackathon 2019",
+  "description": "News source bias information extension. Created for Microsoft Hackathon 2019.",
   "version": "1.0",
   "icons": {
     "25": "images/color-changer25.png",
@@ -16,7 +16,7 @@
       "20": "images/color-changer20.png",
       "40": "images/color-changer40.png"
     },
-    "default_title": "Color Changer",
+    "default_title": "Across the Aisle",
     "default_popup": "popup.html"
   },
   "content_scripts": [{
