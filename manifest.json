@@ -14,7 +14,7 @@
   "browser_action": {
     "default_icon": {
       "20": "images/color-changer20.png",
-      "40": "images/color-changer40.png"
+      "40": "images/ata40.png"
     },
     "default_title": "Across the Aisle",
     "default_popup": "popup.html"

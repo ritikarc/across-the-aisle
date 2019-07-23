@@ -7,7 +7,9 @@ let reset = document.getElementById('reset');
 
 // aliceblue
 aliceblue.onclick = () => {
-  browser.tabs.insertCSS({code: "body { background: aliceblue !important; }"});
+    //browser.pageAction.setPopup("hello");
+    Console.log("Hello world");
+  //browser.tabs.insertCSS({code: "body { background: aliceblue !important; }"});
 };
 
 // cornsilk
