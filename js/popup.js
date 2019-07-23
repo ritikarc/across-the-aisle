@@ -1,7 +1,7 @@
 // get the buttons by id
-let aliceblue = document.getElementById('aliceblue');
-let cornsilk = document.getElementById('cornsilk');
-let reset = document.getElementById('reset');
+// let aliceblue = document.getElementById('aliceblue');
+// let cornsilk = document.getElementById('cornsilk');
+// let reset = document.getElementById('reset');
 
 // use tabs.insertCSS to change header color on button click
 
