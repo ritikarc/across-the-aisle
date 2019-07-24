@@ -5,8 +5,8 @@
   "description": "News source bias information extension. Created for Microsoft Hackathon 2019.",
   "version": "1.0",
   "icons": {
-    "25": "images/ata25.png",
-    "48": "images/ata48.png"
+    "25": "images/ata128.png",
+    "48": "images/ata128.png"
   },
   "permissions": [
     "*://docs.microsoft.com/*",
@@ -14,8 +14,8 @@
   ], 
   "browser_action": {
     "default_icon": {
-      "20": "images/ata20.png",
-      "40": "images/ata40.png"
+      "20": "images/ata128.png",
+      "40": "images/ata128.png"
     },
     "default_title": "Across the Aisle",
     "default_popup": "popup.html"
