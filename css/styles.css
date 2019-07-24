@@ -18,18 +18,20 @@ h1 {
     text-align: center;
 }
 
-p {
-    font-weight: 500;
-    font-size: 1em;
-    margin-bottom: 10px;  
-}
-
 bold {
     
     font-weight: 600;
     font-size: 1em;
     margin-bottom: 10px;
 }
+
+
+p {
+    font-weight: 500;
+    font-size: 1em;
+    margin-bottom: 10px;  
+}
+
 
 a {
     font-weight: 500;

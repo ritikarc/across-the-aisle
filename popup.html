@@ -2,18 +2,30 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <script type='text/javascript' src="js/popup.js"></script> 
+    <!-- ^^ moved this here from body -->
+
   </head>
-  <body>
+  <body onload="sourcebias()">
       
       <h1>Across the Aisle Article Analysis</h1>
-      <p>Our thoughts on the political biases of this article:</p>
+      <!-- <p>Our thoughts on the political biases of this article:</p> -->
       <bold>Article Bias Rating:</bold><br />
-      <bold>Source Bias Rating:</bold><br />
-      <bold>Other Articles:?</bold><br />
+      <!-- <input id="CNNsourcerating" type="text" value = "Source: Left Leaning"/> -->
+      <!-- <bold><span id=""></span></bold><br /> -->
+
+      <b id="sourceratingbias">Test</b><br />
+      <script>
+        function sourcebias() {
+          document.write('Cnn');
+      }</script>
+      <!-- <script>sourcebias();</script>  -->
+
+      <!-- <bold>Source Bias Rating:</bold><br /> -->
+      <bold>Other Articles:</bold><br />
       <a href="https://ritikarc11.wixsite.com/acrosstheaisle"_parent">About Aisle</a>
       <!-- <input id="aliceblue" type="button" value="Aliceblue" />
       <input id="cornsilk" type="button" value="Cornsilk" />
       <input id="reset" type="button" value="Reset" /> -->
-      <script src="js/popup.js"></script>
   </body>
 </html>
