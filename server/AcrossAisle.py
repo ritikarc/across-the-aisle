@@ -117,6 +117,10 @@ def interpretPage(url) :
 	art = Article(url, language="en")
 	art.download()
 	art.parse() 
+	# Return null if not valid article
+	if art.authors == []:
+		return []
+
 	article = art.text
 	article = article.split()
 	category = topic(art.title, titleWords)
