@@ -1,18 +1,34 @@
-// listen for sendMessage() from content script
-var browser = browser || chrome
-const url = document.location.href;
+// const reqUrl = "http://localhost:8081/"
 
-browser.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-        // set the icon for the browser action from sendMessage() in content script
-        browser.browserAction.setIcon({
-            path: {
-                "20": request.iconPath20,
-                "40": request.iconPath40
-            },
-            tabId: sender.tab.id
-        });
-        // disable browser action for the current tab
-        browser.browserAction.disable(sender.tab.id);
-    });
-console.log(url);
+// // get the URL and format it for post
+// const data = {
+//     url: document.location.href
+// }
+
+
+// // Send request
+// $.post(reqUrl, data, (ret, status) => {
+//     if (status == "success" && ret != "[]") {
+//         var payload = JSON.parse(ret);
+//         var leaning = payload[0];
+//         var keyTokens = payload[1];
+//         //alert(payload[0]);
+//     }
+// });
+
+// chrome.runtime.onMessage.addListener(
+//     function(request, sender, sendResponse) {
+//       if (request.cmd == "any command") {
+//         $.post(reqUrl, data, (ret, status) => {
+//             if (status == "success" && ret != "[]") {
+//                 var payload = JSON.parse(ret);
+//                 var leaning = payload[0];
+//                 var keyTokens = payload[1];
+//                 sendResponse(payload);
+//             }
+//         });
+//       } else {
+//         sendResponse({ result: "error", message: `Invalid 'cmd'` });
+//       }
+//       return true; 
+//     });
