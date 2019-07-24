@@ -1,6 +1,10 @@
 // listen for sendMessage() from content script
+<<<<<<< HEAD
 var browser = browser || chrome
 const url = document.location.href;
+=======
+var browser = chrome
+>>>>>>> b935190badac53a0c7c731011fc2ca65360bdff0
 browser.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         // set the icon for the browser action from sendMessage() in content script
