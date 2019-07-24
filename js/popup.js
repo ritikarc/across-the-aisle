@@ -5,19 +5,19 @@
 
 // use tabs.insertCSS to change header color on button click
 
-// aliceblue
-aliceblue.onclick = () => {
-    //browser.pageAction.setPopup("hello");
-    Console.log("Hello world");
-  //browser.tabs.insertCSS({code: "body { background: aliceblue !important; }"});
-};
+// // aliceblue
+// aliceblue.onclick = () => {
+//     //browser.pageAction.setPopup("hello");
+//     Console.log("Hello world");
+//   //browser.tabs.insertCSS({code: "body { background: aliceblue !important; }"});
+// };
 
-// cornsilk
-cornsilk.onclick = () => {
-  browser.tabs.insertCSS({code: "body { background: cornsilk !important; }"});
-};
+// // cornsilk
+// cornsilk.onclick = () => {
+//   browser.tabs.insertCSS({code: "body { background: cornsilk !important; }"});
+// };
 
-// back to original
-reset.onclick = () => {
-  browser.tabs.insertCSS({code: "body { background: none !important; }"});
-};
+// // back to original
+// reset.onclick = () => {
+//   browser.tabs.insertCSS({code: "body { background: none !important; }"});
+// };

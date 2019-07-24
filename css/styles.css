@@ -2,6 +2,7 @@
 
 * {
     font-family: 'Segoe UI';
+    min-width: 250px;
 }
 
 h1 {
@@ -20,6 +21,7 @@ p {
 }
 
 bold {
+    
     font-weight: 600;
     font-size: .8em;
     margin-bottom: 10px;
