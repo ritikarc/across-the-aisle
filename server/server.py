@@ -1,9 +1,11 @@
-#!/usr/bin/env python
+# Across the Aisle (across-the-aisle)
+# July 2019
  
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import cgi
 import json
 from urllib.parse import parse_qs
+from AcrossAisle import interpretPage
 
 # HTTPRequestHandler class
 class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
@@ -35,17 +37,20 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
             headers=self.headers,
             environ={'REQUEST_METHOD': 'POST'}
         )
-        print(form.getvalue("in"))
-        print(form.getvalue("bin"))
-        data = {
-            "rating": "Republican",
-            "keywords": []
-        }
+        url = form.getvalue("url")
+        ret = interpretPage(url)
+        print(ret)
+        # print(form.getvalue("in"))
+        # print(form.getvalue("bin"))
+        # data = {
+        #     "rating": "Republican",
+        #     "keywords": []
+        # }
        
-        data["keywords"].append("key1")
-        data["keywords"].append("key2")
+        # data["keywords"].append("key1")
+        # data["keywords"].append("key2")
 
-        self.wfile.write((json.dumps(data)).encode())
+        # self.wfile.write((json.dumps(data)).encode())
 
 def run():
     print('starting server...')
