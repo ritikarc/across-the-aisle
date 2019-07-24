@@ -1,5 +1,6 @@
 // listen for sendMessage() from content script
 var browser = browser || chrome
+const url = document.location.href;
 browser.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         // set the icon for the browser action from sendMessage() in content script
@@ -13,3 +14,4 @@ browser.runtime.onMessage.addListener(
         // disable browser action for the current tab
         browser.browserAction.disable(sender.tab.id);
     });
+console.log(url);

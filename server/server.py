@@ -38,6 +38,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
             environ={'REQUEST_METHOD': 'POST'}
         )
         url = form.getvalue("url")
+        print(url)
         ret = interpretPage(url)
         print(ret)
         # print(form.getvalue("in"))

@@ -118,8 +118,8 @@ def interpretPage(url) :
 	art.download()
 	art.parse() 
 	# Return null if not valid article
-	if art.authors == []:
-		return []
+	print(art.authors)
+
 
 	article = art.text
 	article = article.split()
