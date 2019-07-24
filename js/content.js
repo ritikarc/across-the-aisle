@@ -6,7 +6,7 @@ if ((url.indexOf("//docs.microsoft.com") <= -1) &&
     (url.indexOf("//www.cnn.com") <= -1)) {
     // send inactive icons
     browser.runtime.sendMessage({
-        "iconPath20": "images/inactive20.png",
-        "iconPath40": "images/inactive40.png"
+        "iconPath20": "images/inactive-ata20.png",
+        "iconPath40": "images/inactive-ata40.png"
     });
 }
