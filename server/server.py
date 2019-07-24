@@ -50,7 +50,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
         # data["keywords"].append("key1")
         # data["keywords"].append("key2")
 
-        # self.wfile.write((json.dumps(data)).encode())
+        self.wfile.write((json.dumps(ret)).encode())
 
 def run():
     print('starting server...')
