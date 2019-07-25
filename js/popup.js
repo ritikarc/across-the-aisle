@@ -17,13 +17,19 @@ function sourcebias() {
         var leaning = payload[0];
         var links = payload[1];
         sourceratingbias.innerText = payload[0];
+        // alert(JSON.stringify(links.value[0]));
         urls = [
-          links.value[0].url,
-          links.value[1].url,
-          links.value[2].url,
-          links.value[3].url,
+          [links.value[0].url, links.value[0].name], 
+          [links.value[1].url, links.value[1].name],
+          [links.value[2].url, links.value[2].name],
+          [links.value[3].url, links.value[3].name]  
         ];
-        alert(JSON.stringify(urls));
+        
+        let urlDiv = document.getElementById('newsLinks');
+        for (var i = 0; i < 4; i++) {
+          urlDiv.innerHTML += '<li><a href="' + urls[i][0] + '">' + urls[i][1] + '</a></li>';
+        }
+        //alert(JSON.stringify(urls));
       } else {
         sourceratingbias.innerText = "Error: Not a valid article"
       }
