@@ -24,3 +24,38 @@ function sourcebias() {
   
   });
 }
+<<<<<<< HEAD
+=======
+
+window.addEventListener('load', (event) => {
+  chrome.tabs.executeScript(null, {
+    file: 'content.js'
+  }, () => {
+      connect() //this is where I call my function to establish a connection     });
+  });
+});
+
+
+function connect() {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const port = chrome.tabs.connect(tabs[0].id);
+    port.postMessage({ function: 'html' });
+    port.onMessage.addListener((response) => {
+      html = response.html;
+      title = response.title;
+      description = response.description;
+    });
+  });
+}
+
+function bingnewsapi() {
+  
+}
+// function sendHighlightMessage() {
+//   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//     chrome.tabs.sendMessage(tabs[0].id, {highlight: true}, function(response) {
+//       console.log(response);
+//     });
+//   });
+// }
+>>>>>>> ffea725f54911da7f22923effbddc7955b6bb5db
