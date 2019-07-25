@@ -41,15 +41,6 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
         print(url)
         ret = interpretPage(url)
         print(ret)
-        # print(form.getvalue("in"))
-        # print(form.getvalue("bin"))
-        # data = {
-        #     "rating": "Republican",
-        #     "keywords": []
-        # }
-       
-        # data["keywords"].append("key1")
-        # data["keywords"].append("key2")
 
         self.wfile.write((json.dumps(ret)).encode())
 

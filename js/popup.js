@@ -15,8 +15,15 @@ function sourcebias() {
       if (status == "success" && ret != "[]") {
         var payload = JSON.parse(ret);
         var leaning = payload[0];
-        var keyTokens = payload[1];
+        var links = payload[1];
         sourceratingbias.innerText = payload[0];
+        urls = [
+          links.value[0].url,
+          links.value[1].url,
+          links.value[2].url,
+          links.value[3].url,
+        ];
+        alert(JSON.stringify(urls));
       } else {
         sourceratingbias.innerText = "Error: Not a valid article"
       }
@@ -24,29 +31,7 @@ function sourcebias() {
   
   });
 }
-<<<<<<< HEAD
-=======
 
-window.addEventListener('load', (event) => {
-  chrome.tabs.executeScript(null, {
-    file: 'content.js'
-  }, () => {
-      connect() //this is where I call my function to establish a connection     });
-  });
-});
-
-
-function connect() {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    const port = chrome.tabs.connect(tabs[0].id);
-    port.postMessage({ function: 'html' });
-    port.onMessage.addListener((response) => {
-      html = response.html;
-      title = response.title;
-      description = response.description;
-    });
-  });
-}
 
 function bingnewsapi() {
   
@@ -58,4 +43,3 @@ function bingnewsapi() {
 //     });
 //   });
 // }
->>>>>>> ffea725f54911da7f22923effbddc7955b6bb5db

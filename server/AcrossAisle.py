@@ -11,6 +11,7 @@ import requests
 from newspaper import Article
 from nltk.stem import PorterStemmer
 from pprint import pprint
+from BingNewsSearchAPI import bingsearchAPI
 ps = PorterStemmer()
 
 # initializing Azure Subscription
@@ -20,32 +21,40 @@ api_base_url = "https://westus.api.cognitive.microsoft.com/text/analytics/v2.1/"
 keyphrase_url = api_base_url + "keyPhrases"
 
 # returns category of article
-def topic(title, titleWords) :
-	title = title.lower()
-	title = title.split()
-	titleLength = len(title)
-	for i in range(titleLength) :
-		title[i] = ps.stem(title[i])
-		
-	title = " ".join(title)
+def topic(titleWords, articlePhrases) :
 
+	articlePhrases = " ".join(articlePhrases)
 	currKey = ""
 	currVal = -1
+
+	weights = {}
 
 	# key = category
 	for key, value in titleWords.items() :
 		count = 0
-
 		# key = title key words, value2 = 0
 		for key2, value2 in value.items() :
 
-			if key2 in title :
+			if key2 in articlePhrases :
 				count += 1
 
-		if count > currVal :
-			currVal = count
+		lenDict = len(value)
+
+		#avoid division by 0 error
+		if lenDict == 0 :
+			lenDict = 1
+
+		weights[key] = count/lenDict
+		# print(key)
+		# print(lenDict)
+		# print("~~~~~~~~")
+
+	for key, value in weights.items() :
+		if value > currVal :
+			currVal = value
 			currKey = key
 
+	# print(currKey)
 	return currKey
 
 
@@ -57,10 +66,11 @@ def dictionary(folderName) :
 	count = 0
 
 	for tempFile in os.listdir(folderPath) :
+		print(tempFile)
 		pathName = os.path.join(folderPath, tempFile)
 		keyWords = []
 		currCategory = ""
-		
+		#
 		with open(pathName, 'r', encoding='utf-8-sig') as json_file:
 			data  = json.load(json_file)
 
@@ -97,7 +107,7 @@ def dictionary(folderName) :
 def interpretPage(url) :
 
 	# Code to get training data
-	# keyWords, titleWords = dictionary("data")
+	#keyWords, titleWords = dictionary("test")
 
 	# with open('keyWords.txt', 'w') as json_file :
 	# 	json.dump(keyWords, json_file)
@@ -112,39 +122,53 @@ def interpretPage(url) :
 		keyWords = json.load(json_file)
 
 	# article that will be rated as Far Left, Left, Center, Right, or Far Right
-	#url = sys.argv[1]
-	# url = "https://www.nytimes.com/2019/07/22/us/puerto-rico-protests-updates.html?action=click&module=Top%20Stories&pgtype=Homepage"
+	# url = sys.argv[1]
+	#url = "https://www.foxnews.com/politics/trump-abortion-tax-dollar-planned-parenthood"
 	art = Article(url, language="en")
 	art.download()
 	art.parse() 
-	# Return null if not valid article
-	print(art.authors)
-
-
 	article = art.text
-	article = article.split()
-	category = topic(art.title, titleWords)
 
 	# API
-	text = " ".join(article)
+	if len(article) > 5120 :
+		article = article[0:5120]
+
 	documents = {"documents": [
-		{"id": "text", "language": "en", "text": text}
+		{"id": "text", "language": "en", "text": article}
 	]}
 	headers = {"Ocp-Apim-Subscription-Key": subscription_key}
 	response = requests.post(keyphrase_url, headers=headers, json=documents)
 	key_phrases = response.json()
 
 	articlePhrases = key_phrases['documents'][0]['keyPhrases']
+
 	# stem article phrases
 	artLength = len(articlePhrases)
 	for i in range(artLength) :
 		articlePhrases[i] = ps.stem(articlePhrases[i])
+
+	category = topic(titleWords, articlePhrases)
+	print(category)
+
+
+	# for key,value in keyWords.items() :
+	# 	print(key)
+	# 	print(value.keys())
+		
+	# 	# for key2, value2 in value.items() :
+	# 	# 	print(key2)
+	# 	# 	print(len(value2))
+	
+	# 	print("~~~~~~")
 
 	currKey = ""
 	currMax = -1
 	currTotal = 0
 	
 	# keep count of key words in article for each category
+	weights = {}
+	points = {}
+
 	for key, value in keyWords[category].items() :
 		numPoints = 0
 		
@@ -152,11 +176,21 @@ def interpretPage(url) :
 			if word in keyWords[category][key].keys() :
 				numPoints += 1
 
+		weights[key] = numPoints/len(value)
+		points[key] = numPoints
+
 		currTotal += numPoints
 
-		if numPoints > currMax :
-			currMax = numPoints
+		# if numPoints > currMax :
+		# 	currMax = numPoints
+		# 	currKey = key
+
+	for key, value in weights.items() :
+		if value > currMax :
+			currMax = value
 			currKey = key
+
+	currMax = points[currKey]
 
 	keyList = []
 	# put key words in array
@@ -181,9 +215,5 @@ def interpretPage(url) :
 	elif currKey == "PalmerReport.json" :
 		verdict = str(round(percent, 2)) + "% Left"
 
-	print(verdict)
-
-	if len(keyList) > 10 :
-		return [verdict, keyList[0:10]]
-
-	return [verdict, keyList]
+	links = bingsearchAPI(art.title)
+	return [verdict, links]
