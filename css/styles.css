@@ -5,13 +5,13 @@
     min-width: 250px;
     /* max-width: 500px; */
 
-    max-height: 300px;
+    max-height: 400px;
     overflow: auto;
 }
 
 h1 {
     font-weight: 600;
-    font-size: 1.2em;
+    font-size: 1.1em;
     background-image: linear-gradient(to right, red, blue);
     background-size: 100%;
     color: white;
@@ -25,7 +25,17 @@ bold {
     margin-bottom: 10px;
 }
 
+rating {
+    font-weight: 800;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
 
+cite {
+    font-weight: 500;
+    font-size: .6em;
+    margin-bottom: 10px;
+}
 p {
     font-weight: 500;
     font-size: 1em;
@@ -37,4 +47,11 @@ a {
     font-weight: 500;
     font-size: 1em;
     margin-bottom: 10px;
+}
+
+article {
+    text-indent: 20px;
+    font-weight: 300;
+    font-size: .9em;
+    margin-bottom: 0px;
 }
